@@ -1,0 +1,2 @@
+INSERT INTO DEPENDENT VALUES (1,"Salvatore","Di Costanzo","12000");
+INSERT INTO DEPENDENT VALUES (2,"Emanuele","Iandolo","12000");
