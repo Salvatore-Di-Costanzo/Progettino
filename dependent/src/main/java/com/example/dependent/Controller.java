@@ -23,6 +23,9 @@ public class Controller {
         return dependentRepo.findAll();
     }
 
-
+    @GetMapping("/getAllIds")
+    public List<Integer> getAllIds(){
+        return dependentRepo.findAl
+    }
 
 }
