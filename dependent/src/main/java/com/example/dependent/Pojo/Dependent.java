@@ -8,7 +8,7 @@ public class Dependent  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
-    public long id;
+    public Integer id;
 
     @Column(name ="Nome")
     public String nome;
@@ -29,12 +29,12 @@ public class Dependent  {
 
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Integer getId() {
+        return id;
     }
 
-    public long getId() {
-        return id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {

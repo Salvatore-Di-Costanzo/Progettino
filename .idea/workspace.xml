@@ -19,15 +19,29 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="37f9bbc9-68be-4bc1-afb6-596cb0f878b0" name="Default Changelist" comment="Speriamo che funziona">
+    <list default="true" id="ab44eb60-7cbe-4e4c-8655-8d66829ff709" name="Default Changelist" comment="Aggiunta Cose">
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/turni/src/main/java/com/example/turni/Controller/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/turni/src/main/java/com/example/turni/Controller/FeignDependent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/turni/src/main/java/com/example/turni/Pojo/Turni.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/turni/src/main/java/com/example/turni/Repository/TurniRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/turni/src/main/resources/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependent/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dependent/src/main/java/com/example/dependent/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/dependent/src/main/java/com/example/dependent/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependent/src/main/java/com/example/dependent/Repository/DependentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/dependent/src/main/java/com/example/dependent/Repository/DependentRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependent/src/main/java/com/example/dependent/DependentApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/dependent/src/main/java/com/example/dependent/DependentApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependent/src/main/java/com/example/dependent/Pojo/Dependent.java" beforeDir="false" afterPath="$PROJECT_DIR$/dependent/src/main/java/com/example/dependent/Pojo/Dependent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turni/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/turni/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,64 +53,19 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1k6UrkmTJGH7At4wojzxvtBu2hY" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/turni" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dependent" />
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="37f9bbc9-68be-4bc1-afb6-596cb0f878b0" name="Default Changelist" comment="" />
-      <created>1605020736401</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1605020736401</updated>
-      <workItem from="1605020738038" duration="1274000" />
-    </task>
-    <task id="LOCAL-00001" summary="Speriamo che funziona">
-      <created>1605021601899</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1605021601899</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Speriamo che funziona" />
-    <option name="LAST_COMMIT_MESSAGE" value="Speriamo che funziona" />
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1605020798071">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1605021648693">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1605020798071" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605021609084">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605021609084" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1605021648693" />
   </component>
 </project>
