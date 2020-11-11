@@ -1,21 +1,15 @@
-package com.example.turni.Controller;
+package com.example.turni.controller;
 
-import com.example.turni.Pojo.Turno;
-import com.example.turni.Repository.TurnoRepo;
-import com.netflix.discovery.converters.Auto;
+import com.example.turni.pojo.Turno;
+import com.example.turni.repository.TurnoRepo;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -60,13 +54,13 @@ public class Controller {
         Session currentSession = entityManager.unwrap(Session.class);
 
         Query theQuery =
-                currentSession.createQuery("select id_dependent from Turno where date=:dateSet",Integer.class);
+                currentSession.createQuery("select idDependent from Turno where date=:dateSet",Integer.class);
         theQuery.setParameter("dateSet",data);
 
 
-        List<Integer> id_dipendenti = theQuery.getResultList();
+        List<Integer> idDipendenti = theQuery.getResultList();
 
-        for(Integer id : id_dipendenti){
+        for(Integer id : idDipendenti){
             result.append(feignDependent.getDateDependent(id.toString()));
             result.append("\n");
         }

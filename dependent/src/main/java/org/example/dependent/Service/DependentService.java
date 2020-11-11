@@ -4,10 +4,13 @@ package org.example.dependent.Service;
 
 import org.example.dependent.Pojo.Dependent;
 import org.example.dependent.Repository.DependentRepo;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.persistence.EntityManager;
 import java.util.*;
 
 @Service
@@ -15,6 +18,13 @@ public class DependentService {
 
     @Autowired
     DependentRepo repository;
+
+    EntityManager entityManager;
+
+    public DependentService(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
 
     public Dependent getDependent(int id) {
         return repository.getOne(id);
@@ -48,10 +58,24 @@ public class DependentService {
 
     public String getStringDependent(int id){
 
-        StringBuilder string = new StringBuilder();
 
-            return string.append(repository.findById(id)).toString();
+        Session currentSession = entityManager.unwrap(Session.class);
 
+        Query theQuery =
+                currentSession.createQuery("SELECT Dependent.id,Dependent.cognome,Dependent.nome FROM Dependent WHERE Dependent.id=:idUtente",Response.class);
+        theQuery.setParameter("idUtente",id);
+
+        List<Response> dipendenti = theQuery.getResultList();
+
+        StringBuilder uscita = new StringBuilder();
+
+
+        uscita.append("\nId: " + dipendenti.get(0).getId());
+        uscita.append(" - Cognome: " + dipendenti.get(0).getCognome());
+        uscita.append(" - Nome: " + dipendenti.get(0).getNome());
+
+
+        return uscita.toString();
 
 
     }

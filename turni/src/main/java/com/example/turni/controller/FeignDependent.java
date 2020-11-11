@@ -1,4 +1,4 @@
-package com.example.turni.Controller;
+package com.example.turni.controller;
 
 
 import org.springframework.cloud.openfeign.FeignClient;

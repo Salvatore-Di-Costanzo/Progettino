@@ -1,13 +1,9 @@
-package com.example.turni.Pojo;
+package com.example.turni.pojo;
 
 
-import com.example.turni.Controller.FeignDependent;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Turno implements Serializable {
@@ -20,16 +16,16 @@ public class Turno implements Serializable {
     @Column(name = "Data")
     private String date;
 
-    @Column(name = "id_dependent")
-    private Integer id_dependent;
+    @Column(name = "idDependent")
+    private Integer idDependent;
 
     public Turno() {
         
     }
 
-    public Turno(String date, Integer id_dependent) {
+    public Turno(String date, Integer idDependent) {
         this.date = date;
-        this.id_dependent = id_dependent;
+        this.idDependent = idDependent;
     }
 
     public Integer getId() {
@@ -48,12 +44,12 @@ public class Turno implements Serializable {
         this.date = date;
     }
 
-    public Integer getId_dependent() {
-        return id_dependent;
+    public Integer getIdDependent() {
+        return idDependent;
     }
 
-    public void setId_dependent(Integer id_dependent) {
-        this.id_dependent = id_dependent;
+    public void setIdDependent(Integer idDependent) {
+        this.idDependent = idDependent;
     }
 
     @Override
@@ -61,7 +57,7 @@ public class Turno implements Serializable {
         return "Turni{" +
                 "id=" + id +
                 ", date=" + date +
-                ", id_dependent=" + id_dependent +
+                ", id_dependent=" + idDependent +
                 '}';
     }
 }
