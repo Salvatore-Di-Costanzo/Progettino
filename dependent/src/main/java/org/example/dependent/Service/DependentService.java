@@ -74,7 +74,6 @@ public class DependentService {
         uscita.append(" - Cognome: " + dipendenti.get(0).getCognome());
         uscita.append(" - Nome: " + dipendenti.get(0).getNome());
 
-
         return uscita.toString();
 
 
