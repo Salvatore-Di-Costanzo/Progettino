@@ -57,26 +57,26 @@ public class RealizzaTurni {
                 id_giornata.clear();
             }
 
-
-
             // Mappo il turno da inserire
             Turno turno = new Turno();
             turno.setDate(new SimpleDateFormat(FORMATDATE).format(setDate));
             int randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
-            while( id_giornata.contains(randomIdex) )
-                randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
+
             turno.setId_dependent(id_dependent.get(randomIdex));
 
             id_giornata.add(randomIdex);
 
 
             /// Rimuovo dalla lista l'ID dell'utente in modo che non venga ripescato
-            //id_dependent.remove(randomIdex);
+            id_dependent.remove(randomIdex);
 
 
 
             /// Verifico che la lista non debba essere ricaricata
-            if (id_dependent.isEmpty()){ id_dependent.addAll(feignDependent.getIds()); }
+            if (id_dependent.isEmpty()){
+                id_dependent.addAll(feignDependent.getIds());
+                id_dependent.removeAll(id_giornata);
+            }
 
             /// Inserisco il turno del DB
 
