@@ -1,0 +1,323 @@
+Index: dependent/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n\txsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n\t<modelVersion>4.0.0</modelVersion>\r\n\t<parent>\r\n\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t<artifactId>spring-boot-starter-parent</artifactId>\r\n\t\t<version>2.3.5.RELEASE</version>\r\n\t\t<relativePath/> <!-- lookup parent from repository -->\r\n\t</parent>\r\n\t<groupId>com.example</groupId>\r\n\t<artifactId>dependent</artifactId>\r\n\t<version>0.0.1-SNAPSHOT</version>\r\n\t<name>dependent</name>\r\n\t<description>Demo project for Spring Boot</description>\r\n\r\n\t<properties>\r\n\t\t<java.version>11</java.version>\r\n\t\t<spring-cloud.version>Hoxton.SR9</spring-cloud.version>\r\n\t</properties>\r\n\r\n\t<dependencies>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-data-jpa</artifactId>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-data-rest</artifactId>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-web</artifactId>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.cloud</groupId>\r\n\t\t\t<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>\r\n\t\t\t<version>2.2.6.RELEASE</version>\r\n\t\t</dependency>\r\n\r\n\t\t<dependency>\r\n\t\t\t<groupId>io.springfox</groupId>\r\n\t\t\t<artifactId>springfox-swagger2</artifactId>\r\n\t\t\t<version>3.0.0</version>\r\n\t\t</dependency>\r\n\r\n\t\t<dependency>\r\n\t\t\t<groupId>io.springfox</groupId>\r\n\t\t\t<artifactId>springfox-swagger-ui</artifactId>\r\n\t\t\t<version>3.0.0</version>\r\n\t\t</dependency>\r\n\r\n\t\t<dependency>\r\n\t\t\t<groupId>io.springfox</groupId>\r\n\t\t\t<artifactId>springfox-boot-starter</artifactId>\r\n\t\t\t<version>3.0.0</version>\r\n\t\t</dependency>\r\n\r\n\r\n\t\t<dependency>\r\n\t\t\t<groupId>com.h2database</groupId>\r\n\t\t\t<artifactId>h2</artifactId>\r\n\t\t\t<scope>runtime</scope>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.projectlombok</groupId>\r\n\t\t\t<artifactId>lombok</artifactId>\r\n\t\t\t<optional>true</optional>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-test</artifactId>\r\n\t\t\t<scope>test</scope>\r\n\t\t\t<exclusions>\r\n\t\t\t\t<exclusion>\r\n\t\t\t\t\t<groupId>org.junit.vintage</groupId>\r\n\t\t\t\t\t<artifactId>junit-vintage-engine</artifactId>\r\n\t\t\t\t</exclusion>\r\n\t\t\t</exclusions>\r\n\t\t</dependency>\r\n\t</dependencies>\r\n\r\n\t<dependencyManagement>\r\n\t\t<dependencies>\r\n\t\t\t<dependency>\r\n\t\t\t\t<groupId>org.springframework.cloud</groupId>\r\n\t\t\t\t<artifactId>spring-cloud-dependencies</artifactId>\r\n\t\t\t\t<version>${spring-cloud.version}</version>\r\n\t\t\t\t<type>pom</type>\r\n\t\t\t\t<scope>import</scope>\r\n\t\t\t</dependency>\r\n\t\t</dependencies>\r\n\t</dependencyManagement>\r\n\r\n\t<build>\r\n\t\t<plugins>\r\n\t\t\t<plugin>\r\n\t\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t\t<artifactId>spring-boot-maven-plugin</artifactId>\r\n\t\t\t</plugin>\r\n\t\t</plugins>\r\n\t</build>\r\n\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- dependent/pom.xml	(revision eda334aec6b7cbcd6d5814e98dc44e87bf057151)
++++ dependent/pom.xml	(date 1605021010448)
+@@ -78,6 +78,65 @@
+ 				</exclusion>
+ 			</exclusions>
+ 		</dependency>
++
++		<dependency>
++			<groupId>org.springframework.boot</groupId>
++			<artifactId>spring-boot-starter-actuator</artifactId>
++		</dependency>
++		<dependency>
++			<groupId>org.springframework.cloud</groupId>
++			<artifactId>spring-cloud-starter-eureka-server</artifactId>
++			<version>1.4.7.RELEASE</version>
++		</dependency>
++		<dependency>
++			<groupId>org.springframework.boot</groupId>
++			<artifactId>spring-boot-starter-data-rest</artifactId>
++		</dependency>
++		<dependency>
++			<groupId>org.springframework.boot</groupId>
++			<artifactId>spring-boot-starter-web</artifactId>
++		</dependency>
++
++		<dependency>
++			<groupId>org.springframework.boot</groupId>
++			<artifactId>spring-boot-starter-test</artifactId>
++			<scope>test</scope>
++		</dependency>
++		<dependency>
++			<groupId>org.springframework.cloud</groupId>
++			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
++		</dependency>
++
++		<dependency>
++			<groupId>org.springframework.cloud</groupId>
++			<artifactId>spring-cloud-starter-openfeign</artifactId>
++		</dependency>
++
++		<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-texttospeech-bom -->
++		<dependency>
++			<groupId>com.google.cloud</groupId>
++			<artifactId>google-cloud-texttospeech-bom</artifactId>
++			<version>1.2.3</version>
++			<type>pom</type>
++		</dependency>
++
++		<dependency>
++			<groupId>io.springfox</groupId>
++			<artifactId>springfox-swagger2</artifactId>
++			<version>3.0.0</version>
++		</dependency>
++
++		<dependency>
++			<groupId>io.springfox</groupId>
++			<artifactId>springfox-swagger-ui</artifactId>
++			<version>3.0.0</version>
++		</dependency>
++
++		<dependency>
++			<groupId>io.springfox</groupId>
++			<artifactId>springfox-boot-starter</artifactId>
++			<version>3.0.0</version>
++		</dependency>
+ 	</dependencies>
+ 
+ 	<dependencyManagement>
+Index: dependent/src/main/java/com/example/dependent/Pojo/Dependent.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dependent.Pojo;\r\n\r\nimport javax.persistence.*;\r\n\r\n@Entity\r\npublic class Dependent  {\r\n\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    @Column(name = \"Id\")\r\n    public long id;\r\n\r\n    @Column(name =\"Nome\")\r\n    public String nome;\r\n\r\n    @Column(name = \"Cognome\")\r\n    public String cognome;\r\n\r\n    @Column(name = \"Salary\")\r\n    public Float salary;\r\n\r\n    public Dependent(String nome, String cognome, Float salary) {\r\n        this.nome = nome;\r\n        this.cognome = cognome;\r\n        this.salary = salary;\r\n    }\r\n\r\n    public Dependent() {\r\n\r\n    }\r\n\r\n    public void setId(long id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public long getId() {\r\n        return id;\r\n    }\r\n\r\n    public String getNome() {\r\n        return nome;\r\n    }\r\n\r\n    public void setNome(String nome) {\r\n        this.nome = nome;\r\n    }\r\n\r\n    public String getCognome() {\r\n        return cognome;\r\n    }\r\n\r\n    public void setCognome(String cognome) {\r\n        this.cognome = cognome;\r\n    }\r\n\r\n    public Float getSalary() {\r\n        return salary;\r\n    }\r\n\r\n    public void setSalary(Float salary) {\r\n        this.salary = salary;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Dependent{\" +\r\n                \"id='\" + id + '\\'' +\r\n                \", nome='\" + nome + '\\'' +\r\n                \", cognome='\" + cognome + '\\'' +\r\n                \", salary=\" + salary +\r\n                '}';\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- dependent/src/main/java/com/example/dependent/Pojo/Dependent.java	(revision eda334aec6b7cbcd6d5814e98dc44e87bf057151)
++++ dependent/src/main/java/com/example/dependent/Pojo/Dependent.java	(date 1605021228389)
+@@ -8,7 +8,7 @@
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Column(name = "Id")
+-    public long id;
++    public Integer id;
+ 
+     @Column(name ="Nome")
+     public String nome;
+@@ -29,14 +29,14 @@
+ 
+     }
+ 
+-    public void setId(long id) {
+-        this.id = id;
+-    }
+-
+-    public long getId() {
++    public Integer getId() {
+         return id;
+     }
+ 
++    public void setId(Integer id) {
++        this.id = id;
++    }
++
+     public String getNome() {
+         return nome;
+     }
+Index: dependent/src/main/java/com/example/dependent/DependentApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dependent;\r\n\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\nimport org.springframework.cloud.netflix.eureka.EnableEurekaClient;\r\n\r\n@SpringBootApplication\r\n@EnableEurekaClient\r\npublic class DependentApplication {\r\n\r\n\tpublic static void main(String[] args) {\r\n\t\tSpringApplication.run(DependentApplication.class, args);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- dependent/src/main/java/com/example/dependent/DependentApplication.java	(revision eda334aec6b7cbcd6d5814e98dc44e87bf057151)
++++ dependent/src/main/java/com/example/dependent/DependentApplication.java	(date 1605020966267)
+@@ -5,7 +5,6 @@
+ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+ 
+ @SpringBootApplication
+-@EnableEurekaClient
+ public class DependentApplication {
+ 
+ 	public static void main(String[] args) {
+Index: server/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.application.name=ServerDependent\r\neureka.client.service-url.defaultZone=http://localhost:8761/eureka/\r\nserver.port=8761\r\neureka.client.register-with-eureka=false\r\neureka.client.fetch-registry=false\r\neureka.server.wait-time-in-ms-when-sync-empty=0\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+--- server/src/main/resources/application.properties	(revision eda334aec6b7cbcd6d5814e98dc44e87bf057151)
++++ server/src/main/resources/application.properties	(date 1605020891631)
+@@ -1,6 +1,1 @@
+-spring.application.name=ServerDependent
+-eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+-server.port=8761
+-eureka.client.register-with-eureka=false
+-eureka.client.fetch-registry=false
+-eureka.server.wait-time-in-ms-when-sync-empty=0
++
+Index: dependent/src/main/resources/data.sql
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>INSERT INTO DEPENDENT VALUES (1,\"Salvatore\",\"Di Costanzo\",\"12000\");\r\nINSERT INTO DEPENDENT VALUES (2,\"Emanuele\",\"Iandolo\",\"12000\");
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- dependent/src/main/resources/data.sql	(revision eda334aec6b7cbcd6d5814e98dc44e87bf057151)
++++ dependent/src/main/resources/data.sql	(date 1605021260823)
+@@ -1,2 +1,2 @@
+-INSERT INTO DEPENDENT VALUES (1,"Salvatore","Di Costanzo","12000");
+-INSERT INTO DEPENDENT VALUES (2,"Emanuele","Iandolo","12000");
+\ No newline at end of file
++INSERT INTO DEPENDENT VALUES (1,'Salvatore','Di Costanzo',12000);
++INSERT INTO DEPENDENT VALUES (2,'Emanuele','Iandolo',12000);
+\ No newline at end of file
+Index: server/src/main/resources/bootstrap.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- server/src/main/resources/bootstrap.yml	(date 1605020891619)
++++ server/src/main/resources/bootstrap.yml	(date 1605020891619)
+@@ -0,0 +1,6 @@
++spring:
++  application:
++    name: eureka
++  cloud:
++    config:
++      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+Index: dependent/src/main/java/com/example/dependent/Controller.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dependent;\r\n\r\n\r\nimport com.example.dependent.Pojo.Dependent;\r\nimport com.example.dependent.Repository.DependentRepo;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\nimport java.util.List;\r\n\r\n@RestController\r\npublic class Controller {\r\n\r\n    @Autowired\r\n    DependentRepo dependentRepo;\r\n\r\n    @GetMapping(\"/getDependent\")\r\n\r\n    @GetMapping(\"/getDependents\")\r\n    public List<Dependent> getDependents (){\r\n        return dependentRepo.findAll();\r\n    }\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- dependent/src/main/java/com/example/dependent/Controller.java	(revision eda334aec6b7cbcd6d5814e98dc44e87bf057151)
++++ dependent/src/main/java/com/example/dependent/Controller.java	(date 1605021382580)
+@@ -5,6 +5,7 @@
+ import com.example.dependent.Repository.DependentRepo;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.web.bind.annotation.GetMapping;
++import org.springframework.web.bind.annotation.PathVariable;
+ import org.springframework.web.bind.annotation.RestController;
+ 
+ import java.util.List;
+@@ -15,10 +16,13 @@
+     @Autowired
+     DependentRepo dependentRepo;
+ 
+-    @GetMapping("/getDependent")
++    @GetMapping("/getDependent/{id}")
++    public Dependent getDependent(@PathVariable("id") String id) {
++        return dependentRepo.getOne(Integer.parseInt(id));
++    }
+ 
+     @GetMapping("/getDependents")
+-    public List<Dependent> getDependents (){
++    public List<Dependent> getDependents(){
+         return dependentRepo.findAll();
+     }
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHome\" value=\"C:\\Program Files\\JetBrains\\IntelliJ IDEA 2020.2.2\\plugins\\maven\\lib\\maven3\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision eda334aec6b7cbcd6d5814e98dc44e87bf057151)
++++ .idea/workspace.xml	(date 1605020602042)
+@@ -1,5 +1,33 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="BranchesTreeState">
++    <expand>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++    </expand>
++    <select />
++  </component>
++  <component name="ChangeListManager">
++    <list default="true" id="ab44eb60-7cbe-4e4c-8655-8d66829ff709" name="Default Changelist" comment="Aggiunta Cose" />
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
+   <component name="MavenImportPreferences">
+     <option name="generalSettings">
+       <MavenGeneralSettings>
+@@ -7,4 +35,51 @@
+       </MavenGeneralSettings>
+     </option>
+   </component>
++  <component name="ProjectId" id="1k6UXKhIJdbmKnvpygsr3rX360g" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent">
++    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
++    <property name="WebServerToolWindowFactoryState" value="false" />
++    <property name="aspect.path.notification.shown" value="true" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
++  </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="ab44eb60-7cbe-4e4c-8655-8d66829ff709" name="Default Changelist" comment="" />
++      <created>1605020573179</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1605020573179</updated>
++      <workItem from="1605020574357" duration="28000" />
++    </task>
++    <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
++  <component name="WindowStateProjectService">
++    <state x="2741" y="432" key="Github.Dialog.Accounts.Choose" timestamp="1605020593953">
++      <screen x="1920" y="0" width="1920" height="1040" />
++    </state>
++    <state x="2741" y="432" key="Github.Dialog.Accounts.Choose/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605020593953" />
++    <state x="2472" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605020591150">
++      <screen x="1920" y="0" width="1920" height="1040" />
++    </state>
++    <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1605020591150" />
++  </component>
+ </project>
+\ No newline at end of file
+Index: server/src/main/resources/application.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- server/src/main/resources/application.yml	(date 1605020891611)
++++ server/src/main/resources/application.yml	(date 1605020891611)
+@@ -0,0 +1,9 @@
++server:
++  port: ${PORT:8761}
++
++eureka:
++  client:
++    registerWithEureka: false
++    fetchRegistry: false
++  server:
++    waitTimeInMsWhenSyncEmpty: 0
