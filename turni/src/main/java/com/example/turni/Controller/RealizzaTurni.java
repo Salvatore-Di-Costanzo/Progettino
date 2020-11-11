@@ -24,14 +24,13 @@ public class RealizzaTurni {
 
     private EntityManager entityManager;
 
+    private static final String FORMATDATE = "dd-MM-yyyy";
+
     Date currentDate = new Date();
 
     Date fine;
 
     int countDays = 0;
-
-
-
 
     public RealizzaTurni(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -45,51 +44,39 @@ public class RealizzaTurni {
         List<Integer> id_giornata = new ArrayList<>();
 
         /// Algoritmo generazione turni
-        for(int i = 1; i < numGiorni * 4 + 1; i++) {
+        for(int i = 0; i < numGiorni * 4 ; i++) {
 
             // Calcolo la data
             Date setDate = new Date(currentDate.getTime() + (1000*60*60*24) * countDays);
-
-            log.info("\nData Elaborata: " + setDate.toString());
 
 
             // Verifico se devo avanzare con la data, poichè il numero max di dipendenti è 4 per ogni giorno
             // ogni qualvolta elaboro 4 dipendenti passo al giorno dopo.
             if (i%4 == 0 ) {
                 countDays++;
-                id_giornata.removeAll(id_giornata);
+                id_giornata.clear();
             }
 
 
 
             // Mappo il turno da inserire
             Turno turno = new Turno();
-            turno.setDate(new SimpleDateFormat("dd-MM-yyyy").format(setDate));
+            turno.setDate(new SimpleDateFormat(FORMATDATE).format(setDate));
             int randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
+            while( id_giornata.contains(randomIdex) )
+                randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
             turno.setId_dependent(id_dependent.get(randomIdex));
 
             id_giornata.add(randomIdex);
 
-            log.info("\nTurno.date: " + turno.getDate().toString());
-
-            log.info("\nTurno.idDependent: " + turno.getId_dependent().toString());
-
-
-            log.info("\nIndice elaborato: " + randomIdex);
-
 
             /// Rimuovo dalla lista l'ID dell'utente in modo che non venga ripescato
-            id_dependent.remove(randomIdex);
+            //id_dependent.remove(randomIdex);
 
-            for(Integer element : id_dependent)
-                log.info("\n->" + element);
+
 
             /// Verifico che la lista non debba essere ricaricata
-            if (id_dependent.size() == 0){
-                id_dependent = feignDependent.getIds();
-                for(Integer id : id_giornata)
-                    id_dependent.remove(id);
-            }
+            if (id_dependent.isEmpty()){ id_dependent.addAll(feignDependent.getIds()); }
 
             /// Inserisco il turno del DB
 
@@ -100,7 +87,7 @@ public class RealizzaTurni {
             currentSession.getTransaction().commit();
 
         }
-        return "Calcolo turni effettuato dal: " + currentDate.toString() + " al :" + new Date(currentDate.getTime() + (1000*60*60*24) * numGiorni).toString();
+        return "Calcolo turni effettuato dal: " + new SimpleDateFormat(FORMATDATE).format(currentDate) + " al: " + new SimpleDateFormat(FORMATDATE).format(new Date(currentDate.getTime() + (1000*60*60*24) * numGiorni));
 
     }
 
