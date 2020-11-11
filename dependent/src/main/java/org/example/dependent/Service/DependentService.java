@@ -62,15 +62,15 @@ public class DependentService {
         Session currentSession = entityManager.unwrap(Session.class);
 
         Query theQuery =
-                currentSession.createQuery("SELECT Dependent.id,Dependent.cognome,Dependent.nome FROM Dependent WHERE Dependent.id=:idUtente",Response.class);
+                currentSession.createQuery("from Dependent where id=:idUtente",Dependent.class);
         theQuery.setParameter("idUtente",id);
 
-        List<Response> dipendenti = theQuery.getResultList();
+        List<Dependent> dipendenti = theQuery.getResultList();
 
         StringBuilder uscita = new StringBuilder();
 
 
-        uscita.append("\nId: " + dipendenti.get(0).getId());
+        uscita.append("Id: " + dipendenti.get(0).getId());
         uscita.append(" - Cognome: " + dipendenti.get(0).getCognome());
         uscita.append(" - Nome: " + dipendenti.get(0).getNome());
 

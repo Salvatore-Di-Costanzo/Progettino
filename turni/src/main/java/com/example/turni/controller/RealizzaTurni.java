@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.persistence.EntityManager;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -25,10 +23,6 @@ public class RealizzaTurni {
     FeignDependent feignDependent;
 
     private EntityManager entityManager;
-
-    LocalDate currentDate = LocalDate.now();
-
-    Date fine;
 
     int countDays = 0;
 
