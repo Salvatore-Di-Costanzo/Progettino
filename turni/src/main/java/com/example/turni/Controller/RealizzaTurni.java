@@ -51,7 +51,6 @@ public class RealizzaTurni {
 
             // Calcolo la data
             LocalDate setDate = LocalDate.now().plusDays(countDays);
-            //Date setDate = new Date(currentDate.getTime() + (1000*60*60*24*countDays));
 
 
             // Verifico se devo avanzare con la data, poichè il numero max di dipendenti è 4 per ogni giorno
@@ -71,7 +70,6 @@ public class RealizzaTurni {
             data.append(setDate.getYear());
             log.info("Data caricata: " + data.toString());
             turno.setDate(data.toString());
-            //turno.setDate(new SimpleDateFormat(FORMATDATE).format(setDate));
             int randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
             while (id_giornata.contains(id_dependent.get(randomIdex)))
                 randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
