@@ -1,2 +1,6 @@
+
 INSERT INTO DEPENDENT VALUES (1,'Salvatore','Di Costanzo',12000);
-INSERT INTO DEPENDENT VALUES (2,'Emanuele','Iandolo',12000);
+INSERT INTO DEPENDENT VALUES (2,'Salvatore','Di Costanzo',12000);
+INSERT INTO DEPENDENT VALUES (3,'Salvatore','Di Costanzo',12000);
+INSERT INTO DEPENDENT VALUES (4,'Salvatore','Di Costanzo',12000);
+INSERT INTO DEPENDENT VALUES (5,'Salvatore','Di Costanzo',12000);
