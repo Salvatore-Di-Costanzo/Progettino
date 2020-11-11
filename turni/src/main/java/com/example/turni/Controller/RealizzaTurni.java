@@ -42,9 +42,10 @@ public class RealizzaTurni {
         List<Integer> id_dependent = feignDependent.getIds();
 
         List<Integer> id_giornata = new ArrayList<>();
+        id_giornata.clear();
 
         /// Algoritmo generazione turni
-        for(int i = 0; i < numGiorni * 4 ; i++) {
+        for(int i = 1; i < numGiorni * 4 +1 ; i++) {
 
             // Calcolo la data
             Date setDate = new Date(currentDate.getTime() + (1000*60*60*24) * countDays);
@@ -61,10 +62,12 @@ public class RealizzaTurni {
             Turno turno = new Turno();
             turno.setDate(new SimpleDateFormat(FORMATDATE).format(setDate));
             int randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
+            while (id_giornata.contains(id_dependent.get(randomIdex)))
+                randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
 
             turno.setId_dependent(id_dependent.get(randomIdex));
 
-            id_giornata.add(randomIdex);
+            id_giornata.add(id_dependent.get(randomIdex));
 
 
             /// Rimuovo dalla lista l'ID dell'utente in modo che non venga ripescato
@@ -87,7 +90,7 @@ public class RealizzaTurni {
             currentSession.getTransaction().commit();
 
         }
-        return "Calcolo turni effettuato dal: " + new SimpleDateFormat(FORMATDATE).format(currentDate) + " al: " + new SimpleDateFormat(FORMATDATE).format(new Date(currentDate.getTime() + (1000*60*60*24) * numGiorni));
+        return "Calcolo turni effettuato dal: " + new SimpleDateFormat(FORMATDATE).format(currentDate) + " al: " + new SimpleDateFormat(FORMATDATE).format(new Date(currentDate.getTime() + (1000*60*60*24) * (numGiorni -1)));
 
     }
 
