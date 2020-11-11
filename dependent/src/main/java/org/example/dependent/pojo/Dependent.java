@@ -1,4 +1,4 @@
-package org.example.dependent.Pojo;
+package org.example.dependent.pojo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

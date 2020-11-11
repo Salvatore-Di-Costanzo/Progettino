@@ -1,9 +1,9 @@
-package org.example.dependent.Service;
+package org.example.dependent.service;
 
 
 
-import org.example.dependent.Pojo.Dependent;
-import org.example.dependent.Repository.DependentRepo;
+import org.example.dependent.pojo.Dependent;
+import org.example.dependent.repository.DependentRepo;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;

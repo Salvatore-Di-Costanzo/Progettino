@@ -1,9 +1,8 @@
-package org.example.dependent.Controller;
+package org.example.dependent.controller;
 
 
-import lombok.Getter;
-import org.example.dependent.Pojo.Dependent;
-import org.example.dependent.Service.DependentService;
+import org.example.dependent.pojo.Dependent;
+import org.example.dependent.service.DependentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
