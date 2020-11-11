@@ -27,6 +27,11 @@ public class Turno implements Serializable {
         
     }
 
+    public Turno(Date date, Integer id_dependent) {
+        this.date = date;
+        this.id_dependent = id_dependent;
+    }
+
     public Integer getId() {
         return id;
     }
