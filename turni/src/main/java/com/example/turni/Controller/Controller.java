@@ -53,7 +53,7 @@ public class Controller {
     @GetMapping("/getDependentTurni/{data}")
     public String getDependentTurni (@PathVariable Date data){
 
-        StringBuilder stringa = new StringBuilder();
+        StringBuilder result = new StringBuilder();
 
         Session currentSession = entityManager.unwrap(Session.class);
 
@@ -65,11 +65,11 @@ public class Controller {
         List<Integer> id_dipendenti = theQuery.getResultList();
 
         for(Integer id : id_dipendenti){
-            stringa.append(feignDependent.getDateDependent(id));
-            stringa.append("\n");
+            result.append(feignDependent.getDateDependent(id));
+            result.append("\n");
         }
 
-        return stringa.toString();
+        return result.toString();
     }
 
 
