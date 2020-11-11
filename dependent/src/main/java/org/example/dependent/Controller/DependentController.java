@@ -1,6 +1,7 @@
 package org.example.dependent.Controller;
 
 
+import lombok.Getter;
 import org.example.dependent.Pojo.Dependent;
 import org.example.dependent.Service.DependentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,12 @@ public class DependentController {
     @GetMapping("/deleteDependent/{id}")
     public void deleteDependent(@PathVariable int id) {
         service.deleteDependentById(id);
+    }
+
+    @GetMapping("/getStringDependent/{id}")
+    public StringBuilder getArrayIds(@PathVariable int id) {
+        return service.getStringDependent(id);
+
     }
 
 }

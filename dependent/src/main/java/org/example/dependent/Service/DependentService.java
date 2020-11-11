@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class DependentService {
@@ -47,5 +44,15 @@ public class DependentService {
     public void deleteDependentById(int id) {
 
         repository.deleteById(id);
+    }
+
+    public StringBuilder getStringDependent(int id){
+
+        StringBuilder string = new StringBuilder();
+
+            return string.append(repository.findById(id));
+
+
+
     }
 }

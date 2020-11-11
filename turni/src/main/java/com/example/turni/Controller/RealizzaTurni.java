@@ -65,8 +65,10 @@ public class RealizzaTurni {
                 id_dependent = feignDependent.getIds();
 
             /// Inserisco il turno del DB
+
             Session currentSession = entityManager.unwrap(Session.class);
 
+            currentSession.beginTransaction();
             currentSession.save(turno);
             currentSession.getTransaction().commit();
 

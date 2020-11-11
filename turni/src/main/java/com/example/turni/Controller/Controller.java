@@ -12,7 +12,7 @@ public class Controller {
     @Autowired
     RealizzaTurni realizzaTurni;
 
-    @GetMapping("/setTurni/{numGiorni}")
+        @GetMapping("/setTurni/{numGiorni}")
     public String setTurni(@PathVariable String numGiorni){
 
         return realizzaTurni.calcolaTurni(Integer.parseInt(numGiorni));
