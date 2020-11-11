@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class DependentController {
@@ -42,9 +41,8 @@ public class DependentController {
     }
 
     @GetMapping("/getStringDependent/{id}")
-    public StringBuilder getArrayIds(@PathVariable int id) {
-        return service.getStringDependent(id);
-
+    public String getArrayIds(@PathVariable String id) {
+        return service.getStringDependent(Integer.parseInt(id));
     }
 
 }

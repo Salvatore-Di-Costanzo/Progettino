@@ -46,11 +46,11 @@ public class DependentService {
         repository.deleteById(id);
     }
 
-    public StringBuilder getStringDependent(int id){
+    public String getStringDependent(int id){
 
         StringBuilder string = new StringBuilder();
 
-            return string.append(repository.findById(id));
+            return string.append(repository.findById(id)).toString();
 
 
 

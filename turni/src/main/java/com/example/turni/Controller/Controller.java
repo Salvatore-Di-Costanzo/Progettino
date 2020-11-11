@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +53,7 @@ public class Controller {
     }
 
     @GetMapping("/getDependentTurni/{data}")
-    public String getDependentTurni (@PathVariable Date data){
+    public String getDependentTurni (@PathVariable String data){
 
         StringBuilder result = new StringBuilder();
 
@@ -65,7 +67,7 @@ public class Controller {
         List<Integer> id_dipendenti = theQuery.getResultList();
 
         for(Integer id : id_dipendenti){
-            result.append(feignDependent.getDateDependent(id));
+            result.append(feignDependent.getDateDependent(id.toString()));
             result.append("\n");
         }
 

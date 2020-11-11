@@ -8,6 +8,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -40,6 +42,8 @@ public class RealizzaTurni {
         /// Importo gli Id dei dipendenti
         List<Integer> id_dependent = feignDependent.getIds();
 
+        List<Integer> id_giornata = new ArrayList<>();
+
         /// Algoritmo generazione turni
         for(int i = 1; i < numGiorni * 4 + 1; i++) {
 
@@ -51,15 +55,20 @@ public class RealizzaTurni {
 
             // Verifico se devo avanzare con la data, poichè il numero max di dipendenti è 4 per ogni giorno
             // ogni qualvolta elaboro 4 dipendenti passo al giorno dopo.
-            if (i%4 == 0 ) { countDays++; }
+            if (i%4 == 0 ) {
+                countDays++;
+                id_giornata.removeAll(id_giornata);
+            }
 
 
 
             // Mappo il turno da inserire
             Turno turno = new Turno();
-            turno.setDate(setDate);
+            turno.setDate(new SimpleDateFormat("dd-MM-yyyy").format(setDate));
             int randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
             turno.setId_dependent(id_dependent.get(randomIdex));
+
+            id_giornata.add(randomIdex);
 
             log.info("\nTurno.date: " + turno.getDate().toString());
 
@@ -78,7 +87,8 @@ public class RealizzaTurni {
             /// Verifico che la lista non debba essere ricaricata
             if (id_dependent.size() == 0){
                 id_dependent = feignDependent.getIds();
-                id_dependent.remove(randomIdex);
+                for(Integer id : id_giornata)
+                    id_dependent.remove(id);
             }
 
             /// Inserisco il turno del DB

@@ -18,7 +18,7 @@ public class Turno implements Serializable {
     private Integer id;
 
     @Column(name = "Data")
-    private Date date;
+    private String date;
 
     @Column(name = "id_dependent")
     private Integer id_dependent;
@@ -27,7 +27,7 @@ public class Turno implements Serializable {
         
     }
 
-    public Turno(Date date, Integer id_dependent) {
+    public Turno(String date, Integer id_dependent) {
         this.date = date;
         this.id_dependent = id_dependent;
     }
@@ -40,11 +40,11 @@ public class Turno implements Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
