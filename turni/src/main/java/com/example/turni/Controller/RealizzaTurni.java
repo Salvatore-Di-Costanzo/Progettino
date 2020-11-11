@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.persistence.EntityManager;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +28,7 @@ public class RealizzaTurni {
 
     private static final String FORMATDATE = "dd-MM-yyyy";
 
-    Date currentDate = new Date();
+    LocalDate currentDate = LocalDate.now();
 
     Date fine;
 
@@ -45,10 +47,11 @@ public class RealizzaTurni {
         id_giornata.clear();
 
         /// Algoritmo generazione turni
-        for(int i = 1; i < numGiorni * 4 +1 ; i++) {
+        for(int i = 1; i <= numGiorni * 4; i++) {
 
             // Calcolo la data
-            Date setDate = new Date(currentDate.getTime() + (1000*60*60*24) * countDays);
+            LocalDate setDate = LocalDate.now().plusDays(countDays);
+            //Date setDate = new Date(currentDate.getTime() + (1000*60*60*24*countDays));
 
 
             // Verifico se devo avanzare con la data, poichè il numero max di dipendenti è 4 per ogni giorno
@@ -60,7 +63,15 @@ public class RealizzaTurni {
 
             // Mappo il turno da inserire
             Turno turno = new Turno();
-            turno.setDate(new SimpleDateFormat(FORMATDATE).format(setDate));
+            StringBuilder data = new StringBuilder();
+            data.append(setDate.getDayOfMonth());
+            data.append("-");
+            data.append(setDate.getMonthValue());
+            data.append("-");
+            data.append(setDate.getYear());
+            log.info("Data caricata: " + data.toString());
+            turno.setDate(data.toString());
+            //turno.setDate(new SimpleDateFormat(FORMATDATE).format(setDate));
             int randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
             while (id_giornata.contains(id_dependent.get(randomIdex)))
                 randomIdex = ThreadLocalRandom.current().nextInt(0, id_dependent.size());
@@ -90,7 +101,28 @@ public class RealizzaTurni {
             currentSession.getTransaction().commit();
 
         }
-        return "Calcolo turni effettuato dal: " + new SimpleDateFormat(FORMATDATE).format(currentDate) + " al: " + new SimpleDateFormat(FORMATDATE).format(new Date(currentDate.getTime() + (1000*60*60*24) * (numGiorni -1)));
+
+        LocalDate setDate = LocalDate.now();
+
+        LocalDateTime localDate = LocalDateTime.now().plusDays(numGiorni);
+
+        StringBuilder dataInizio = new StringBuilder();
+        dataInizio.append(setDate.getDayOfMonth());
+        dataInizio.append("-");
+        dataInizio.append(setDate.getMonthValue());
+        dataInizio.append("-");
+        dataInizio.append(setDate.getYear());
+
+        StringBuilder dataFine = new StringBuilder();
+        dataFine.append(localDate.getDayOfMonth());
+        dataFine.append("-");
+        dataFine.append(localDate.getMonthValue());
+        dataFine.append("-");
+        dataFine.append(localDate.getYear());
+
+
+
+        return "Calcolo turni effettuato dal: " + dataInizio.toString() + " al: " + dataFine.toString();
 
     }
 
