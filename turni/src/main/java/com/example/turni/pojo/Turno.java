@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name="turno")
 public class Turno implements Serializable {
 
     @Id
@@ -13,10 +14,10 @@ public class Turno implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "Data")
+    @Column(name = "data")
     private String date;
 
-    @Column(name = "idDependent")
+    @Column(name = "id_dependent")
     private Integer idDependent;
 
     public Turno() {

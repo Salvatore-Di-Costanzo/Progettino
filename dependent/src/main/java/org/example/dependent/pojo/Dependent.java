@@ -6,28 +6,33 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Data
-@NoArgsConstructor
+@Table(name="dependent")
 public class Dependent  {
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     public Integer id;
 
-    @Column(name ="Nome")
-    public String nome;
-
-    @Column(name = "Cognome")
+    @Column(name = "cognome")
     public String cognome;
 
-    @Column(name = "Salary")
+    @Column(name ="nome")
+    public String nome;
+
+
+    @Column(name = "salary")
     public Float salary;
 
     public Dependent(String nome, String cognome, Float salary) {
         this.nome = nome;
         this.cognome = cognome;
         this.salary = salary;
+    }
+
+    public Dependent() {
     }
 
     public Integer getId() {
