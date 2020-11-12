@@ -34,10 +34,11 @@ public class RealizzaTurni {
     public String calcolaTurni(int numGiorni) {
 
         countDays = 0;
+        boolean check = true;
 
 
         LocalDate baseDate = LocalDate.parse(getMaxDate());
-        LocalDate setDate ;
+        LocalDate setDate;
 
         log.info("\n\nData del db: " + baseDate.toString() + "\n\n");
 
@@ -54,16 +55,20 @@ public class RealizzaTurni {
             // Calcolo la data
             if (i == 1 && baseDate.isEqual(LocalDate.parse("1900-01-01"))) {
                 baseDate = LocalDate.now();
+                check = false;
             }
 
 
             // Se il giorno è Sabato o Domenica saltalo
-            if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY ) countDays += 2;
-            else if( baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY ) countDays++;
-            if (i==1 && (LocalDate.now().isBefore(baseDate))) countDays++;
-                else if (i==1 && LocalDate.now().isEqual(baseDate)){ countDays++;
-                    if( baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY) countDays +=2;
-                        else if( baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY) countDays++;}
+            if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY) countDays += 2;
+            if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY) countDays++;
+
+            if (check){
+                if (i == 1 && LocalDate.now().isBefore(baseDate)) countDays++;
+                if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY) countDays += 2;
+                if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY) countDays++;
+                else if (i == 1 && LocalDate.now().isEqual(baseDate)) countDays++;
+            }
             setDate = baseDate.plusDays(countDays);
 
             // Verifico se devo avanzare con la data, poichè il numero max di dipendenti è 4 per ogni giorno
@@ -80,7 +85,7 @@ public class RealizzaTurni {
             data.append(setDate.getYear());
             data.append("-");
             if (setDate.getMonthValue() >= 1 && setDate.getMonthValue() <= 9)
-                data.append("0"+setDate.getMonthValue());
+                data.append("0" + setDate.getMonthValue());
             else
                 data.append(setDate.getMonthValue());
             data.append("-");
