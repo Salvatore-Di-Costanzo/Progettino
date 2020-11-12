@@ -52,12 +52,18 @@ public class RealizzaTurni {
         for (int i = 1; i <= numGiorni * 4; i++) {
 
             // Calcolo la data
-            if (i == 1 && baseDate.isBefore(LocalDate.now())) baseDate = LocalDate.now();
+            /*if (i == 1 && baseDate.isEqual(LocalDate.parse("1900-01-01"))) {
+                baseDate = LocalDate.now();
+            }*/
 
 
             // Se il giorno è Sabato o Domenica saltalo
-            if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY) countDays += 2;
-            if (i==1 && LocalDate.now().isBefore(baseDate)) countDays++;
+            if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY ) countDays += 2;
+            else if( baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY ) countDays++;
+            if (i==1 && (LocalDate.now().isBefore(baseDate))) countDays++;
+                else if (i==1 && LocalDate.now().isEqual(baseDate)){ countDays++;
+                    if( baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY) countDays +=2;
+                        else if( baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY) countDays++;}
             setDate = baseDate.plusDays(countDays);
 
             // Verifico se devo avanzare con la data, poichè il numero max di dipendenti è 4 per ogni giorno
