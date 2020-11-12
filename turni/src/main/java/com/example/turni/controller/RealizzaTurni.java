@@ -52,9 +52,9 @@ public class RealizzaTurni {
         for (int i = 1; i <= numGiorni * 4; i++) {
 
             // Calcolo la data
-            /*if (i == 1 && baseDate.isEqual(LocalDate.parse("1900-01-01"))) {
+            if (i == 1 && baseDate.isEqual(LocalDate.parse("1900-01-01"))) {
                 baseDate = LocalDate.now();
-            }*/
+            }
 
 
             // Se il giorno è Sabato o Domenica saltalo
