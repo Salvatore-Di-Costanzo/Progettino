@@ -1,5 +1,7 @@
-package com.example.turni.controller;
+package com.example.turni.service;
 
+import com.example.turni.client.FeignDependent;
+import com.example.turni.pojo.Response;
 import com.example.turni.pojo.Turno;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
@@ -63,7 +65,7 @@ public class RealizzaTurni {
             if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY) countDays += 2;
             if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY) countDays++;
 
-            if (check){
+            if (check) {
                 if (i == 1 && LocalDate.now().isBefore(baseDate)) countDays++;
                 if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY) countDays += 2;
                 if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY) countDays++;
@@ -167,5 +169,6 @@ public class RealizzaTurni {
 
 
     }
+
 
 }

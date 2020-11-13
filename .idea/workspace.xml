@@ -21,7 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ab44eb60-7cbe-4e4c-8655-8d66829ff709" name="Default Changelist" comment="Funziona">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/turni/src/main/java/com/example/turni/controller/RealizzaTurni.java" beforeDir="false" afterPath="$PROJECT_DIR$/turni/src/main/java/com/example/turni/controller/RealizzaTurni.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependent/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependent/src/main/java/org/example/dependent/controller/DependentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dependent/src/main/java/org/example/dependent/controller/DependentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependent/src/main/java/org/example/dependent/service/DependentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dependent/src/main/java/org/example/dependent/service/DependentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependent/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dependent/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/turni/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/turni/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/turni/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/turni/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,6 +72,7 @@
       <workItem from="1605082107167" duration="619000" />
       <workItem from="1605168214336" duration="61000" />
       <workItem from="1605172268092" duration="47000" />
+      <workItem from="1605254905071" duration="576000" />
     </task>
     <task id="LOCAL-00001" summary="Funziona">
       <created>1605168264462</created>

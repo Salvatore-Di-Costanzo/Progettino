@@ -1,4 +1,4 @@
-package org.example.dependent.controller;
+package org.example.dependent.documentation;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

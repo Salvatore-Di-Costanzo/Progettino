@@ -2,7 +2,9 @@ package org.example.dependent.service;
 
 
 
+
 import org.example.dependent.pojo.Dependent;
+import org.example.dependent.pojo.Response;
 import org.example.dependent.repository.DependentRepo;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -58,7 +60,6 @@ public class DependentService {
 
     public String getStringDependent(int id){
 
-
         Session currentSession = entityManager.unwrap(Session.class);
 
         Query theQuery =
@@ -77,5 +78,21 @@ public class DependentService {
         return uscita.toString();
 
 
+    }
+
+    public Response getResponse(int id){
+        Session currentSession = entityManager.unwrap(Session.class);
+
+        Query theQuery =
+                currentSession.createQuery("from Dependent where id=:idUtente",Dependent.class);
+        theQuery.setParameter("idUtente",id);
+
+        List<Dependent> dipendenti = theQuery.getResultList();
+
+
+        Response response = new Response(dipendenti.get(0).getId(),dipendenti.get(0).getCognome(),dipendenti.get(0).getNome());
+
+
+        return response;
     }
 }

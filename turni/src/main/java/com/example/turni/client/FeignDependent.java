@@ -1,6 +1,7 @@
-package com.example.turni.controller;
+package com.example.turni.client;
 
 
+import com.example.turni.pojo.Response;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,4 +15,7 @@ public interface FeignDependent {
 
     @GetMapping("/getStringDependent/{id}")
     public String getDateDependent(@PathVariable String id);
+
+    @GetMapping("/getResponse/{id}")
+    public Response getResponse(@PathVariable int id);
 }
