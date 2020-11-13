@@ -1,6 +1,8 @@
-package com.example.turni.controller;
+package com.example.turni.service;
 
+import com.example.turni.client.FeignDependent;
 import com.example.turni.pojo.Turno;
+import com.example.turni.repository.TurnoRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -18,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Configuration
 @EnableFeignClients
 @Slf4j
-public class RealizzaTurni {
+public class RealizzaTurni{
 
     @Autowired
     FeignDependent feignDependent;
@@ -61,13 +63,13 @@ public class RealizzaTurni {
 
             // Se il giorno è Sabato o Domenica saltalo
             if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY) countDays += 2;
-            if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY) countDays++;
+            if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY)   countDays++;
 
-            if (check){
-                if (i == 1 && LocalDate.now().isBefore(baseDate)) countDays++;
+            if (check) {
+                if (i == 1 && LocalDate.now().isBefore(baseDate))                      countDays++;
                 if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SATURDAY) countDays += 2;
-                if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY) countDays++;
-                else if (i == 1 && LocalDate.now().isEqual(baseDate)) countDays++;
+                if (baseDate.plusDays(countDays).getDayOfWeek() == DayOfWeek.SUNDAY)   countDays++;
+                else if (i == 1 && LocalDate.now().isEqual(baseDate))                  countDays++;
             }
             setDate = baseDate.plusDays(countDays);
 
@@ -166,6 +168,27 @@ public class RealizzaTurni {
         return turno.get(0).getDate();
 
 
+    }
+
+    public String getDependentTurni(String data){
+
+        StringBuilder result = new StringBuilder();
+
+        Session currentSession = entityManager.unwrap(Session.class);
+
+        Query theQuery =
+                currentSession.createQuery("select idDependent from Turno where date=:dateSet",Integer.class);
+        theQuery.setParameter("dateSet",data);
+
+
+        List<Integer> idDipendenti = theQuery.getResultList();
+
+        for(Integer id : idDipendenti){
+            result.append(feignDependent.getDateDependent(id.toString()));
+            result.append("\n");
+        }
+
+        return result.toString();
     }
 
 }

@@ -1,10 +1,12 @@
 package com.example.turni.controller;
 
+import com.example.turni.client.FeignDependent;
 import com.example.turni.pojo.Turno;
 import com.example.turni.repository.TurnoRepo;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+import com.example.turni.service.RealizzaTurni;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +16,9 @@ import java.util.List;
 
 
 @RestController
+@Configuration
+@ComponentScan(basePackages = {"com.example.turni"})
 public class Controller {
-
 
     private EntityManager entityManager;
 
@@ -49,23 +52,7 @@ public class Controller {
     @GetMapping("/getDependentTurni/{data}")
     public String getDependentTurni (@PathVariable String data){
 
-        StringBuilder result = new StringBuilder();
-
-        Session currentSession = entityManager.unwrap(Session.class);
-
-        Query theQuery =
-                currentSession.createQuery("select idDependent from Turno where date=:dateSet",Integer.class);
-        theQuery.setParameter("dateSet",data);
-
-
-        List<Integer> idDipendenti = theQuery.getResultList();
-
-        for(Integer id : idDipendenti){
-            result.append(feignDependent.getDateDependent(id.toString()));
-            result.append("\n");
-        }
-
-        return result.toString();
+        return realizzaTurni.getDependentTurni(data);
     }
 
 
