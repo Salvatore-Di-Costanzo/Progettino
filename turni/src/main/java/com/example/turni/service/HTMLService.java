@@ -56,7 +56,7 @@ public class HTMLService {
 
         List<Response> result = new ArrayList<>();
 
-        if (!data.isBlank())
+        if (!data.isEmpty())
             result.addAll(getResponse(data));
         else {
             StringBuilder today = new StringBuilder();
