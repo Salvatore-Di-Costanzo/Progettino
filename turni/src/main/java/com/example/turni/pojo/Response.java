@@ -1,43 +1,33 @@
 package com.example.turni.pojo;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@Data
 public class Response {
 
-    private Integer id;
+    private String index_d;
 
     private String cognome;
 
     private String nome;
 
-    public Response(Integer id, String cognome, String nome) {
-        this.id = id;
+    private Float salary;
+
+    private String data;
+
+    Response(String index_d, String cognome, String nome , Float salary,String data) {
+        this.index_d = index_d;
         this.cognome = cognome;
         this.nome = nome;
+        this.salary=salary;
+        this.data=data;
     }
 
-    public Response() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
+    public Response(String index_d, String cognome, String nome) {
+        this.index_d = index_d;
         this.cognome = cognome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
         this.nome = nome;
     }
 }

@@ -1,64 +1,39 @@
 package com.example.turni.pojo;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name="turno")
-public class Turno implements Serializable {
+@Data
+@NoArgsConstructor
+public class Turno{
 
+    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    private int id;
+
+
+    @Column(name = "index_t")
+    private int index_t;
 
     @Column(name = "data")
-    private String date;
+    private String data;
 
-    @Column(name = "id_dependent")
-    private Integer idDependent;
+    @Column(name = "index_d")
+    private String index_d;
 
-    public Turno() {
-        
-    }
+    @Column(name = "index_g")
+    private int index_g;
 
-    public Turno(String date, Integer idDependent) {
-        this.date = date;
-        this.idDependent = idDependent;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public Integer getIdDependent() {
-        return idDependent;
-    }
-
-    public void setIdDependent(Integer idDependent) {
-        this.idDependent = idDependent;
-    }
-
-    @Override
-    public String toString() {
-        return "Turni{" +
-                "id=" + id +
-                ", date=" + date +
-                ", id_dependent=" + idDependent +
-                '}';
+    public Turno(int index_t, String data, String index_d, int index_g) {
+        this.index_t = index_t;
+        this.data = data;
+        this.index_d = index_d;
+        this.index_g = index_g;
     }
 }

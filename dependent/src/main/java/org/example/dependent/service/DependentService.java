@@ -1,19 +1,15 @@
 package org.example.dependent.service;
 
 
-
-
 import org.example.dependent.pojo.Dependent;
 import org.example.dependent.pojo.Response;
 import org.example.dependent.repository.DependentRepo;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import javax.persistence.EntityManager;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class DependentService {
@@ -21,78 +17,62 @@ public class DependentService {
     @Autowired
     DependentRepo repository;
 
-    EntityManager entityManager;
-
-    public DependentService(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-
-    public Dependent getDependent(int id) {
-        return repository.getOne(id);
-    }
-
-
     public List<Dependent> getDependents() {
         return repository.findAll();
     }
 
-    public List<Integer> getAllIds() {
-        List<Integer> listId = new ArrayList<>();
+    public List<String> getAllIndex() {
 
-        for (int i = 1; i < repository.findAll().size() + 1; i++) {
-
-            listId.add(i);
-        }
-        return listId;
-
+        return repository.queryIndex();
+        
     }
 
     public void postDependent(Dependent dependent) {
 
+        int [] array = new int[9];
+        int randomChar = ThreadLocalRandom.current().nextInt(0, array.length);
+
+        String generatedString = dependent.generateId();
+
+        List<String> allIndex = repository.queryGenerate();
+
+        if(allIndex.contains(generatedString)){
+           generatedString+=randomChar;
+        }
+        dependent.setIndex_d(String.valueOf(generatedString));
         repository.save(dependent);
     }
 
-    public void deleteDependentById(int id) {
+    public void deleteDependentById(String index_d) {
 
-        repository.deleteById(id);
+        repository.queryDelete(index_d);
     }
 
-    public String getStringDependent(int id){
 
-        Session currentSession = entityManager.unwrap(Session.class);
+    public String getStringDependent(String index_d) {
 
-        Query theQuery =
-                currentSession.createQuery("from Dependent where id=:idUtente",Dependent.class);
-        theQuery.setParameter("idUtente",id);
-
-        List<Dependent> dipendenti = theQuery.getResultList();
+        List<Dependent> dipendente = repository.querySearch(index_d);
 
         StringBuilder uscita = new StringBuilder();
 
-
-        uscita.append("Id: " + dipendenti.get(0).getId());
-        uscita.append(" - Cognome: " + dipendenti.get(0).getCognome());
-        uscita.append(" - Nome: " + dipendenti.get(0).getNome());
+        uscita.append(" - Matricola : " + dipendente.get(0).getIndex_d());
+        uscita.append(" - Cognome : " + dipendente.get(0).getCognome());
+        uscita.append(" - Nome : " + dipendente.get(0).getNome());
 
         return uscita.toString();
-
-
     }
 
-    public Response getResponse(int id){
-        Session currentSession = entityManager.unwrap(Session.class);
+    public Response getResponse(String index_d) {
 
-        Query theQuery =
-                currentSession.createQuery("from Dependent where id=:idUtente",Dependent.class);
-        theQuery.setParameter("idUtente",id);
+            List<Dependent> dependents = repository.querySearch(index_d);
 
-        List<Dependent> dipendenti = theQuery.getResultList();
-
-
-        Response response = new Response(dipendenti.get(0).getId(),dipendenti.get(0).getCognome(),dipendenti.get(0).getNome());
-
-
-        return response;
+       return new Response(dependents.get(0).getIndex_d(),
+                dependents.get(0).getCognome(),
+                dependents.get(0).getNome());
     }
+
+    public List<Dependent> findByKeyword(String keyword) {
+        return repository.findByKeyword(keyword);
+    }
+
 }

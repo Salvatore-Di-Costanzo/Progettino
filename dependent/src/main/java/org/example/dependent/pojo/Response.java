@@ -1,44 +1,25 @@
 package org.example.dependent.pojo;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class Response {
 
-    private Integer id;
+    private String index_d;
 
     private String cognome;
 
     private String nome;
 
-    public Response(Integer id, String cognome, String nome) {
-        this.id = id;
+
+    public Response(String index_d, String cognome, String nome) {
+        this.index_d = index_d;
         this.cognome = cognome;
         this.nome = nome;
+
     }
 
-    public Response() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }
 

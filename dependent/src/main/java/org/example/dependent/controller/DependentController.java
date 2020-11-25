@@ -5,8 +5,7 @@ import org.example.dependent.pojo.Dependent;
 import org.example.dependent.pojo.Response;
 import org.example.dependent.service.DependentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,9 +16,9 @@ public class DependentController {
     @Autowired
     DependentService service;
 
-    @GetMapping("/getDependent/{id}")
-    public Dependent getDependent(@PathVariable int id) {
-        return service.getDependent(id);
+    @GetMapping("/getAllIndex")
+    public List<String> GetAllIndex() {
+        return service.getAllIndex();
     }
 
     @GetMapping("/getDependents")
@@ -27,9 +26,14 @@ public class DependentController {
         return service.getDependents();
     }
 
-    @GetMapping("/getAllIds")
-    public List<Integer> getAllIds() {
-        return service.getAllIds();
+    @GetMapping("/getStringDependent/{index_d}")
+    public String getStringDependent(@PathVariable String index_d) {
+        return service.getStringDependent(index_d);
+    }
+
+    @GetMapping("/getResponse/{index_d}")
+    public Response getResponse(@PathVariable String index_d) {
+        return service.getResponse(index_d);
     }
 
     @PostMapping("/postDependent")
@@ -37,17 +41,15 @@ public class DependentController {
         service.postDependent(dependent);
     }
 
-    @GetMapping("/deleteDependent/{id}")
-    public void deleteDependent(@PathVariable int id) {
-        service.deleteDependentById(id);
+    @GetMapping("/deleteDependent/{index_d}")
+    public void deleteDependent(@PathVariable String index_d) {
+        service.deleteDependentById(index_d);
     }
 
-    @GetMapping("/getStringDependent/{id}")
-    public String getArrayIds(@PathVariable String id) {
-        return service.getStringDependent(Integer.parseInt(id));
-    }
 
-    @GetMapping("/getResponse/{id}")
-    public Response getResponse(@PathVariable int id) {return  service.getResponse(id);}
+    @GetMapping("/findDipendente")
+    public List<Dependent> findByKeyword(String keyword) {
+        return service.findByKeyword(keyword);
+    }
 
 }

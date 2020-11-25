@@ -6,64 +6,62 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name="dependent")
-public class Dependent  {
-
-
+@Table(name = "dependent")
+@NoArgsConstructor
+@Data
+public class Dependent {
 
     @Id
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public Integer id;
+    private Integer id;
+
+
+    @Column(name = "index_d")
+    private String index_d;
 
     @Column(name = "cognome")
-    public String cognome;
+    private String cognome;
 
-    @Column(name ="nome")
-    public String nome;
-
+    @Column(name = "nome")
+    private String nome;
 
     @Column(name = "salary")
-    public Float salary;
+    private Float salary;
 
-    public Dependent(String nome, String cognome, Float salary) {
+
+    public Dependent(String nome, String cognome, Float salary, String index_d) {
         this.nome = nome;
         this.cognome = cognome;
         this.salary = salary;
+        this.index_d = index_d;
+
     }
 
-    public Dependent() {
+    public String generateId() {
+        String nome1 = getNome();
+        String cognome1 = getCognome();
+
+        int sumNome = 0;
+        int sumCognome = 0;
+
+        for (int i = 0; i < nome1.length(); i++) {
+
+            int value = nome1.charAt(i);
+            sumNome += value;
+
+        }
+        for (int i = 0; i < cognome1.length(); i++) {
+
+            int value = cognome1.charAt(i);
+            sumCognome += value;
+
+        }
+        int somma = sumNome + sumCognome;
+        String n = String.valueOf(nome1.charAt(0));
+        String c = String.valueOf(cognome1.charAt(0));
+
+        return n + c + somma;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
-    public Float getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Float salary) {
-        this.salary = salary;
-    }
 }
