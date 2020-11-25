@@ -38,6 +38,12 @@ public class Dependent {
 
     }
 
+    public Dependent(String index_d, String cognome, String nome) {
+        this.index_d = index_d;
+        this.cognome = cognome;
+        this.nome = nome;
+    }
+
     public String generateId() {
         String nome1 = getNome();
         String cognome1 = getCognome();

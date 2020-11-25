@@ -7,6 +7,7 @@ import com.example.turni.repository.TurnoRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,9 +18,8 @@ class HTMLServiceTest2 {
 
     private HTMLService serviceTest;
 
-
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         serviceTest = new HTMLService();
         serviceTest.repository = mock(TurnoRepo.class);
         serviceTest.feignDependent = mock(FeignDependent.class);
@@ -27,67 +27,69 @@ class HTMLServiceTest2 {
 
 
     }
+
     @Test
     void getMultipleResponse() {
 
-       // List<Response> expectedResult = List.of(new Response("index_d", "cognome", "nome"));
-      //  when(serviceTest.repository.queryBetween("dataInizio","dataFine")).thenReturn(List.of("value"));
+        List<Response> expectedResult = new ArrayList<>();
 
         final Response response = new Response("index_d", "cognome", "nome");
         when(serviceTest.feignDependent.getResponse("index_d")).thenReturn(response);
 
         final List<Response> result = serviceTest.getMultipleResponse("dataInizio", "dataFine");
 
-      // assertEquals(expectedResult.size(), result.size());
+        assertEquals(expectedResult, result);
 
     }
 
     @Test
     void getData() {
 
-       // List<String> result = List.of("values");
+        List<String> result = new ArrayList<>();
 
-        //List<String> wanted = List.of("values");
-      //  when(serviceTest.repository.queryData("DataInizio","DataFine")).thenReturn(wanted);
+        List<String> wanted = new ArrayList<>();
+        when(serviceTest.repository.queryData("DataInizio", "DataFine")).thenReturn(wanted);
 
-       // assertEquals(result,wanted);
+        assertEquals(result, wanted);
     }
 
 
     @Test
     void getList() {
-      //  List<Response> expectedResult = List.of(new Response("index_d", "cognome", "nome"));
-        //when(serviceTest.getResponse("data")).thenReturn(List.of(new Response("index_d", "cognome", "nome")));
 
-       // List<Response> result = List.of(new Response("index_d", "cognome", "nome"));
-        //when(serviceTest.getResponse("data")).thenReturn(result);
+        List<Response> expectedResult = new ArrayList<>();
 
-      //  assertEquals(expectedResult,result);
+
+        List<Response> result = new ArrayList<>();
+        when(serviceTest.getResponse("data")).thenReturn(result);
+
+        assertEquals(expectedResult, result);
+
     }
 
     @Test
     void getDependents() {
 
-      //  List<Response> expectedResult = List.of(new Response("index_d", "cognome", "nome"));
-        //when(serviceTest.feignDependent.getDependents()).thenReturn(List.of(new Response("index_d", "cognome", "nome")));
+        List<Response> expectedResult = new ArrayList<>();
+        when(serviceTest.feignDependent.getDependents()).thenReturn(expectedResult);
 
-      //  List<Response> result = List.of(new Response("index_d", "cognome", "nome"));
-        //when(serviceTest.feignDependent.getDependents()).thenReturn(result);
+        List<Response> result = new ArrayList<>();
+        when(serviceTest.feignDependent.getDependents()).thenReturn(result);
 
-      //  assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
     void findByKeyword() {
 
-        //final List<Response> expectedResult = List.of(new Response("nome", "cognome", "index_d"));
+        final List<Response> expectedResult = new ArrayList<>();
 
-        //final List<Response> dependents = List.of(new Response("nome", "cognome", "index_d"));
-       // when(serviceTest.feignDependent.findByKeyword("keyword")).thenReturn(dependents);
+        final List<Response> dependents = new ArrayList<>();
+        when(serviceTest.feignDependent.findByKeyword("keyword")).thenReturn(dependents);
 
         final List<Response> result = serviceTest.findByKeyword("keyword");
 
-       // assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -115,20 +117,20 @@ class HTMLServiceTest2 {
         final String expectedResult = "value";
 
         final String result = "value";
-        when(serviceTest.creaTurni(0,0)).thenReturn(result);
+        when(serviceTest.creaTurni(0, 0)).thenReturn(result);
 
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
     void showAllTurns() {
 
-        //List<Turno> expectedResult = List.of(new Turno(0,"data","index_d",0));
+        List<Turno> expectedResult = new ArrayList<>();
 
-        //List<Turno> result = List.of(new Turno(0,"data","index_d",0));
-        //when(serviceTest.showAllTurns()).thenReturn(result);
+        List<Turno> result = new ArrayList<>();
+        when(serviceTest.showAllTurns()).thenReturn(result);
 
-       // assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -142,20 +144,20 @@ class HTMLServiceTest2 {
 
     @Test
     void queryIdDays() {
-        //List<Integer> expectedResult = List.of(0);
+        List<Integer> expectedResult = new ArrayList<>();
 
-        //List<Integer> result = List.of(0);
-       // when(serviceTest.repository.selectQueryG()).thenReturn(result);
+        List<Integer> result = new ArrayList<>();
+        when(serviceTest.repository.selectQueryG()).thenReturn(result);
 
-        //assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
 
     }
 
     @Test
     void updateTurno() {
 
-        serviceTest.updateTurno("index_d",0);
+        serviceTest.updateTurno("index_d", 0);
 
-        verify(serviceTest.repository).queryUpdate("index_d",0);
+        verify(serviceTest.repository).queryUpdate("index_d", 0);
     }
 }
