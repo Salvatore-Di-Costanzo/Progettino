@@ -75,4 +75,9 @@ public class DependentService {
         return repository.findByKeyword(keyword);
     }
 
+    public String queryGetIndexD(String nome ,String cognome){
+        return repository.queryGetIndexD(nome,cognome);
+    }
+
+
 }

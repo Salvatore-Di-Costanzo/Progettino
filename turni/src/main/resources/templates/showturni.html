@@ -47,9 +47,9 @@
 
                     <thead>
                     <tr>
-                        <th>Id Turno</th>
+                        <th>Cognome Dipendente</th>
+                        <th>Nome Dipendente</th>
                         <th>Data</th>
-                        <th>Id Dipendente</th>
                         <th>Delete</th>
 
                     </tr>
@@ -58,14 +58,14 @@
                     <tbody>
 
 
-                    <th:block th:each="turns,test : ${turni}">
+                    <tr th:each="tempTurni,test : ${lists}">
 
-                        <td><span th:text="${turns.index_t}"></span></td>
-                        <td><span th:text="${turns.data}"></span></td>
-                        <td ><span th:text="${turns.index_d}"></span></td>
+                        <td><span th:text="${tempTurni.cognome}"> Cognome </span></td>
+                        <td><span th:text="${tempTurni.nome}"> Nome </span></td>
+                        <td><span th:text="${listdata.get(test.index)}"> Data </span></td>
 
                         <td>
-                            <form th:action="@{/deleteTurno/{id}(id=${turns.index_t})}" th:method="delete">
+                            <form th:action="@{/deleteTurno/{data}(data=${listdata.get(test.index)})}" th:method="delete">
                                 <input type="hidden" name="_method" value="delete" />
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="if(!(confirm('Vuoi davvero cancellare questo turno?'))) return false">Cancella turno
                                 </button>

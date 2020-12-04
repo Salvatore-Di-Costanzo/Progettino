@@ -19,11 +19,17 @@ public interface TurnoRepo extends JpaRepository<Turno, Integer> {
     @Query("update Turno set index_d = :index_d where index_g = :index_g")
     void queryUpdate(@Param("index_d")String index_d , @Param("index_g") int index_g);
 
-    @Query(value = "select index_g from Turno")
-    List<Integer> selectQueryG();
+    @Query(value = "select index_g from Turno where (data like :data)")
+    List<Integer> selectQueryG( @Param("data")String data);
+
+    @Query(value = "select distinct data from Turno where data like :data")
+    String selectData(@Param("data") String data);
 
     @Query(value = "select max(index_t) from Turno")
     Query queryMax();
+
+    @Query(value = "select max(index_g) from Turno")
+    Query queryMaxG();
 
     @Query(value ="from Turno t where t.id = (select max(id) from Turno)")
     List<Turno> queryTurno();
@@ -36,8 +42,8 @@ public interface TurnoRepo extends JpaRepository<Turno, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "delete from Turno where index_t = :index_t")
-    void queryDelete(int index_t);
+    @Query(value = "delete from Turno where data = :data")
+    void queryDelete(String data);
 
     @Query(value = "select index_d from Turno where index_t =:index_t")
     List<String> queryCheck(@Param("index_t") int index_t);
@@ -47,7 +53,5 @@ public interface TurnoRepo extends JpaRepository<Turno, Integer> {
 
     @Query(value = "select data from Turno where (data BETWEEN :dataInizio and :dataFine)")
     List<String> queryData(@Param("dataInizio")String dataInizio, @Param("dataFine")String dataFine);
-
-
 
 }

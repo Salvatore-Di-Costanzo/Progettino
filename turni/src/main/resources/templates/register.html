@@ -11,7 +11,7 @@
     <title>Add CSS and JS to Thymeleaf</title>
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
-<body>
+<body class="overflowhidden">
 
 <div class="register-container">
     <a href="welcome">
@@ -31,27 +31,29 @@
             </div>
 
             <div class="center">
-
+                <div class="col-12 text-center">
                 <a href="dipendenti">
-                    <button class="btn btn-info align-items-center">Lista Dipendenti</button>
-
+                    <button class="btn btn-info">Lista Dipendenti</button>
                 </a>
+                </div>
+
                 <form th:action="@{/addDependent}" method="post" modelattribute="response">
 
                     <hr>
-                    <label>
-                        <input name="nome" class="form-control m-3"
-                               placeholder="Inserire Nome" type="text"/>
+                    <div class="d-flex flex-column align-items-center justify-content-center">
 
-                        <input name="cognome" class="form-control m-3"
-                               placeholder="Inserire Cognome" type="text"/>
+                        <input name="nome" class="form-control w-50 m-3"
+                               placeholder="Inserire Nome" type="text" minlength="3"/>
 
-                        <input name="salary" class="form-control m-3"
-                               placeholder="Inserire Salary" type="text"/>
-                    </label>
+                        <input name="cognome" class="form-control w-50 m-3"
+                               placeholder="Inserire Cognome" type="text" minlength="3"/>
+
+                        <input name="salary" class="form-control w-50 m-3"
+                               placeholder="Inserire Salary" type="number" minlength="4"/>
+                    </div>
 
                     <hr>
-                    <div class="input-group-btn">
+                    <div class="input-group-btn col-12 text-center">
 
                         <button type="submit" onclick="alert('Dipendente inserito con Successo')" value="submit"
                                 class="btn btn-danger">Register

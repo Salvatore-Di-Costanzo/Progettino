@@ -302,7 +302,7 @@ tbody tr:hover {
     display:flex;
     flex-direction: column;
     align-items: center;
-    margin-top:100px;
+    margin-top:30px;
 }
 
 .image{
@@ -330,13 +330,13 @@ tbody tr:hover {
     display:flex;
     flex-direction: column;
     align-items: center;
-    margin-top:100px;
+    margin-top:25px;
 }
 .turni-container{
     display:flex;
     flex-direction: column;
     align-items: center;
-    margin-top:100px;
+    margin-top:30px;
 }
 
 .center {

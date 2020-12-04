@@ -36,7 +36,7 @@ public class RealizzaTurni {
 
     public String calcolaTurni(int numGiorni , int nDipendenti) {
 
-        int indexg = 0;
+        int indexg = getMaxDay();
         int countDays = 0;
         boolean check = true;
 
@@ -108,8 +108,6 @@ public class RealizzaTurni {
             turno.setIndex_g(indexg);
             indexg++;
 
-            if(indexg == nDipendenti)
-                indexg= 0;
 
 
             // Verifico se devo avanzare con la data, poichè il numero max di dipendenti è 4 per ogni giorno
@@ -179,6 +177,18 @@ public class RealizzaTurni {
 
         List<Turno> turno = repository.queryTurno();
         return turno.get(0).getData();
+    }
+
+    public Integer getMaxDay() {
+
+        repository.queryMaxG();
+
+        if (repository.queryMaxG() == null)
+            return 0;
+
+
+        List<Turno> turno = repository.queryTurno();
+        return turno.get(0).getIndex_g()+1;
     }
 
 

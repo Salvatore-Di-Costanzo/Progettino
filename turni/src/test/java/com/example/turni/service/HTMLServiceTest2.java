@@ -136,20 +136,9 @@ class HTMLServiceTest2 {
     @Test
     void deleteTurno() {
 
-        serviceTest.deleteTurno(0);
+        serviceTest.deleteTurno("");
 
-        verify(serviceTest.repository).queryDelete(0);
-
-    }
-
-    @Test
-    void queryIdDays() {
-        List<Integer> expectedResult = new ArrayList<>();
-
-        List<Integer> result = new ArrayList<>();
-        when(serviceTest.repository.selectQueryG()).thenReturn(result);
-
-        assertEquals(expectedResult, result);
+        verify(serviceTest.repository).queryDelete("");
 
     }
 

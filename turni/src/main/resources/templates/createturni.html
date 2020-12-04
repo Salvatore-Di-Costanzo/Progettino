@@ -19,33 +19,34 @@
     <div class="limiter">
         <div class="container">
 
-            <div class="col-12 text-center mb-5 text-white">
+            <div class="col-12 text-center mb-2 text-white">
                 <h2>Inserisci numero turni da calcolare</h2>
+            </div>
+
+            <div class="col-12 text-center">
+            <a href="/showturni">
+                <button type="submit" class="btn btn-info m-1">Visualizza Turni</button>
+            </a>
             </div>
 
             <div class="center">
 
-
-                <label>
-                    <div class="form-inline m-2">
+                    <div>
 
                         <form th:action="@{/turniDays}" method="post">
-                        <input name="nGiornate" class="form-control m-3"
-                               placeholder="Numero Giornate" type="number"/>
-                        <span class="input-group-btn">
-                </span>
-                            <input name="nDipendenti" class="form-control m-3"
-                                   placeholder="Numero Dipendenti" type="number"/>
-                            <span class="input-group-btn">
-                            <button type="submit" onclick="alert('Turni creati con Successo')" class="btn btn-danger m-1">Crea Turni</button>
-                </span>
-                        </form>
-                        <a href="/showturni">
-                            <button type="submit" class="btn btn-info m-1">Visualizza Turni</button>
-                        </a>
-                    </div>
-                </label>
+                            <hr>
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                        <input name="nGiornate" class="form-control m-3 w-50"
+                               placeholder="Numero Giornate" max="365" type="number"/>
 
+                            <input name="nDipendenti" class="form-control m-3 w-50"
+                                   placeholder="Numero Dipendenti" max="99" type="number"/>
+                                <hr>
+                            <button type="submit" onclick="alert('Turni creati con Successo')" class="btn btn-danger">Crea Turni</button>
+                            </div>
+                        </form>
+
+                    </div>
 
             </div>
         </div>

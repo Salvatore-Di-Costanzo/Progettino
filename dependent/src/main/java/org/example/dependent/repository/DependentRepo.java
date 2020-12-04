@@ -31,6 +31,8 @@ public interface DependentRepo extends JpaRepository<Dependent, Integer> {
     @Query(value ="select index_d from Dependent")
     List<String> queryGenerate();
 
+    @Query(value = "select index_d from Dependent where (nome like :nome and cognome like :cognome)")
+    String queryGetIndexD(@Param("nome")String nome,@Param("cognome")String cognome);
 
 
 }

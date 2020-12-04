@@ -6,6 +6,7 @@ import com.example.turni.pojo.Turno;
 import com.example.turni.repository.TurnoRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -26,9 +27,9 @@ public class HTMLService {
     @Autowired
     TurnoRepo repository;
 
-    public List<Response> getMultipleResponse(String dataInizio , String dataFine) {
+    public List<Response> getMultipleResponse(String dataInizio, String dataFine) {
         List<Response> list = new ArrayList<>();
-        List<String> idDep = repository.queryBetween(dataInizio,dataFine);
+        List<String> idDep = repository.queryBetween(dataInizio, dataFine);
 
         for (String index_d : idDep)
             list.add(feignDependent.getResponse(index_d));
@@ -36,9 +37,9 @@ public class HTMLService {
         return list;
     }
 
-    public List<String> getData(String dataInizio , String dataFine){
+    public List<String> getData(String dataInizio, String dataFine) {
 
-      return repository.queryData(dataInizio,dataFine);
+        return repository.queryData(dataInizio, dataFine);
     }
 
 
@@ -91,28 +92,53 @@ public class HTMLService {
         feignDependent.postDependent(response);
     }
 
-    public String creaTurni(int nGiorni , int nDipendenti) {
-         return turnMethod.calcolaTurni(nGiorni ,nDipendenti);
+    public String creaTurni(int nGiorni, int nDipendenti) {
+        return turnMethod.calcolaTurni(nGiorni, nDipendenti);
     }
 
     public List<Turno> showAllTurns() {
         return repository.findAll();
     }
 
-    public void deleteTurno(int index_t) {
-        repository.queryDelete(index_t);
+    public void deleteTurno(String data) {
+        repository.queryDelete(data);
     }
 
-    public List<Integer> queryIdDays(){
-        return repository.selectQueryG();
-    }
 
     public void updateTurno(String index_d, int index_g) {
 
-        repository.queryUpdate(index_d,index_g);
+        repository.queryUpdate(index_d, index_g);
 
     }
 
+    public String selectData(String data) {
+
+        if (data.isEmpty())
+            data = (String.valueOf(LocalDate.now()));
+
+        else
+            data = repository.selectData(data);
+
+        return data;
+    }
+
+    public void updateDependent(String nome, String cognome, int index_g) {
+
+        String index_d = feignDependent.queryIndexD(nome, cognome);
+
+        //Integer index_g = repository.selectQueryG(index_d,data);
+
+        updateTurno(index_d, index_g);
+
+
+    }
+
+    public List<Integer> selectDays(String data) {
+
+        if (data.isEmpty())
+            data = (String.valueOf(LocalDate.now()));
+        return repository.selectQueryG(data);
+    }
 
 
 }

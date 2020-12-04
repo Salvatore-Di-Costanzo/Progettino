@@ -12,38 +12,44 @@
 <div class="turni-container">
 
     <a href="welcome">
-        <div class="mb-5 image">
+        <div class="mb-3 image">
         </div>
     </a>
 
     <div class="limiter">
         <div class="container">
 
-            <div class="col-12 text-center mb-5 text-white">
-                <h2>Inserire l'id del dipendente per modificare</h2>
+            <div class="col-12 text-center mb-2 text-white">
+                <h2>Inserire nome, cognome e giornata del dipendente per modificare il turno</h2>
             </div>
 
             <div class="center">
-
-
-                <label>
-                    <div class="form-inline m-2">
+                <div class="col-12 text-center">
+                <a href="/showturni">
+                    <button type="submit" class="btn btn-info m-1">Visualizza Turni</button>
+                </a>
+                </div>
 
                         <form th:action="@{/updateTurno}" method="post">
-                            <input name="index_d" class="form-control m-3"
-                                   placeholder="Id Dipendente" type="text"/>
-                            <input name="index_g" class="form-control m-3"
-                                   placeholder="Id Giornata" type="text"/>
-                            <span class="input-group-btn">
-                            <button type="submit" onclick="alert('Modifica Completata')" class="btn btn-danger m-1">Modifica</button>
-                </span>
+
+                            <hr>
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+
+                                <input name="nome" class="form-control w-50 m-3"
+                                       placeholder="Inserire Nome" type="text" minlength="3"/>
+
+                                <input name="cognome" class="form-control w-50 m-3"
+                                       placeholder="Inserire Cognome" type="text" minlength="3"/>
+
+                                <input name="index_g" class="form-control w-50 m-3"
+                                       placeholder="Inserire Numero Giornata" type="number" minlength="4"/>
+                            </div>
+
+
+                            <div class="input-group-btn col-12 text-center">
+                        <button type="submit" onclick="alert('Modifica Completata')" class="btn btn-danger m-1">Modifica</button>
+                            </div>
                         </form>
-                        </form>
-                        <a href="/showturni">
-                            <button type="submit" class="btn btn-info m-1">Visualizza Turni</button>
-                        </a>
-                    </div>
-                </label>
 
 
             </div>

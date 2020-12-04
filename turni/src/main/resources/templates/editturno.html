@@ -17,12 +17,11 @@
     </div>
     </a>
 
-    <div class="table100 table-wrapper d-flex justify-content-around w-100">
+    <div class="table100 table-wrapper d-flex justify-content-around w-75">
         <div class="d-flex">
             <table class="table-left">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Cognome</th>
                     <th>Nome</th>
                 </tr>
@@ -34,7 +33,6 @@
                 <th:block th:each="dipendente : ${dependents}">
                     <tr>
 
-                        <td><span th:text="${dipendente.index_d}"> ID </span></td>
                         <td><span th:text="${dipendente.cognome}"> Cognome </span></td>
                         <td><span th:text="${dipendente.nome}"> Nome </span></td>
 
@@ -67,8 +65,10 @@
             <table>
                 <thead>
                 <tr>
-                    <th>ID Giornata</th>
-                    <th>ID</th>
+                    <th>Giornata <br>
+                    Lavorativa</th>
+
+                    <th>Data</th>
                     <th>Cognome</th>
                     <th>Nome</th>
                     <th>Modifica</th>
@@ -81,16 +81,16 @@
                 <th:block th:each="tempTurni , test : ${listTurni}">
 
                     <tr>
-                        <td><span th:text="${listDays.get(test.index)}"> Giorni </span></td>
-                        <td><span th:text="${tempTurni.index_d}"> ID </span></td>
-                        <td><span th:text="${tempTurni.cognome}"> Cognome </span></td>
-                        <td><span th:text="${tempTurni.nome}"> Nome </span></td>
+                        <td><span th:text="${Days.get(test.index)}"></span></td>
+                        <td><span th:text="${listDays}"></span></td>
+                        <td><span th:text="${tempTurni.cognome}"></span></td>
+                        <td><span th:text="${tempTurni.nome}"></span></td>
                         <td>
 
-                            <a href="editdipendenteturno">
+                        <a href="/editdipendenteturno">
                             <button type="submit" class="btn btn-warning btn-xs">Modifica dipendente
                             </button>
-                            </a>
+                        </a>
 
                         </td>
 
@@ -98,7 +98,10 @@
                 </th:block>
 
                 </tbody>
+
+
             </table>
+
         </div>
     </div>
 </div>

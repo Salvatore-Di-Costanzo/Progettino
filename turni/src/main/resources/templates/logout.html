@@ -17,36 +17,16 @@
     <div class="mb-5 imagewelcome">
     </div>
 
-    <form class="mb-3" th:action="@{/logout}" method="post">
-        <span sec:authentication="name"></span>
-        <a href="/logout">
-        <button type="submit" class="btn btn-outline-dark"> Log-out</button>
-          </a>
-    </form>
-
-
-    <div class="limiter">
-        <div class="container-fluid">
-
-            <div class="col-12 text-center mb-5 text-white">
-            <h2>Benvenuto nell'APP gestionale dei turni dei Dipendenti</h2>
-            </div>
-            <div class="center">
-
-
-                <a href="dipendenti">
-                    <button type="button" class="btn btn-danger btn-lg btn-block m-2">Lista Dipendenti</button>
-                </a>
-
-                <a href="turni">
-                    <button type="button" class="btn btn-info btn-lg btn-block m-2">Gestione Turni </button>
-                </a>
-
-
-            </div>
-        </div>
+    <div class="col-12 text-center mb-5 text-white">
+    <h2> Hai effettuato il logout. A presto!</h2>
     </div>
+
+
+    <a href="/login">
+        <button type="button" class="btn btn-danger btn-lg btn-block m-2">Ritorna al Log-In </button>
+    </a>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

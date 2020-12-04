@@ -3,8 +3,6 @@ package com.example.turni.client;
 
 import com.example.turni.pojo.Response;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.cloud.openfeign.SpringQueryMap;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +34,8 @@ public interface FeignDependent {
     @GetMapping("/findDipendente")
     public List<Response> findByKeyword(@RequestParam String keyword);
 
+    @GetMapping("/queryIndexD")
+    public String queryIndexD(@RequestParam String nome , @RequestParam String cognome);
 
 
 

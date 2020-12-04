@@ -49,9 +49,9 @@
                     </div>
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Cognome</th>
-                        <th>Nome</th>
+
+                        <th>Cognome Dipendente</th>
+                        <th>Nome Dipendente</th>
                         <th>Data</th>
 
 
@@ -62,8 +62,6 @@
 
                     <tr th:each="tempTurni,test : ${lists}">
 
-
-                            <td><span th:text="${tempTurni.index_d}"> ID </span></td>
                             <td><span th:text="${tempTurni.cognome}"> Cognome </span></td>
                             <td><span th:text="${tempTurni.nome}"> Nome </span></td>
                             <td><span th:text="${listdata.get(test.index)}"> Data </span></td>

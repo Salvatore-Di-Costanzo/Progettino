@@ -46,10 +46,14 @@ public class DependentController {
         service.deleteDependentById(index_d);
     }
 
-
     @GetMapping("/findDipendente")
     public List<Dependent> findByKeyword(String keyword) {
         return service.findByKeyword(keyword);
+    }
+
+    @GetMapping("/queryIndexD")
+    public String queryIndexD(@RequestParam("nome") String nome,@RequestParam("cognome") String cognome){
+        return service.queryGetIndexD(nome,cognome);
     }
 
 }

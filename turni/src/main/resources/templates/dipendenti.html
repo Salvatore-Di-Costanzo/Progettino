@@ -45,9 +45,8 @@
 
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Cognome</th>
-                        <th>Nome</th>
+                        <th>Cognome Dipendente</th>
+                        <th>Nome Dipendente</th>
                         <th>Delete</th>
                     </tr>
 
@@ -58,9 +57,9 @@
                     <th:block th:each="dipendente : ${dependents}">
 
 
-                        <td><span th:text="${dipendente.index_d}"> ID </span></td>
                         <td><span th:text="${dipendente.cognome}"> Cognome </span></td>
                         <td><span th:text="${dipendente.nome}"> Nome </span></td>
+
 
                         <td>
                             <form th:action="@{/deleteDependent/{id}(id=${dipendente.index_d})}" th:method="delete">

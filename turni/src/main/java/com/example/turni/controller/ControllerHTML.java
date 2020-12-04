@@ -1,15 +1,17 @@
 package com.example.turni.controller;
 
 
+
 import com.example.turni.pojo.Response;
-import com.example.turni.pojo.Turno;
 import com.example.turni.service.HTMLService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -19,11 +21,14 @@ public class ControllerHTML {
     @Autowired
     HTMLService htmlService;
 
-    @GetMapping("/welcome")
-    public String Welcome(Model model) {
-        String welcome = "Benvenuto";
+    @GetMapping("/")
+    public String Home() {
+        return "welcome";
+    }
 
-        model.addAttribute("welcome", welcome);
+    @GetMapping("/welcome")
+    public String Welcome() {
+
         return "welcome";
     }
 
@@ -54,28 +59,34 @@ public class ControllerHTML {
     @GetMapping("/showturni")
     public String showTurni(Model model) {
 
-        List<Turno> list = htmlService.showAllTurns();
+        List<Response> listResponse = htmlService.getMultipleResponse(String.valueOf(LocalDate.now()),"2021-12-12");
 
-        model.addAttribute("turni", list);
+        List<String> string = htmlService.getData(String.valueOf(LocalDate.now()),"2021-12-12");
+
+        model.addAttribute("listdata" , string);
+        model.addAttribute("lists" , listResponse);
+
 
         return "showturni";
     }
 
-    @PostMapping("/deleteTurno/{id}")
-    public String deleteTurno(@PathVariable(value = "id") int id) {
+    @PostMapping("/deleteTurno/{data}")
+    public String deleteTurno(@PathVariable(value = "data") String data) {
 
-        htmlService.deleteTurno(id);
+        htmlService.deleteTurno(data);
 
         return "redirect:/showturni";
     }
 
 
     @PostMapping("updateTurno")
-    public String updateTurno(@RequestParam(value = "index_g") int index_g, Turno turno, @RequestParam(value = "index_d") String index_d) {
+    public String updateTurno(@RequestParam(value = "nome") String nome, @RequestParam(value = "cognome") String cognome,
+                              @RequestParam(value = "index_g") int index_g) {
 
-        turno.setIndex_d(index_d);
+       htmlService.updateDependent(nome, cognome, index_g);
 
-        htmlService.updateTurno(index_d, index_g);
+        if(StringUtils.isNumeric(nome) || StringUtils.isNumeric(cognome))
+            return "error";
 
         return "redirect:/editturno";
     }
@@ -88,18 +99,17 @@ public class ControllerHTML {
         List<Response> list = htmlService.getDependents();
         List<Response> listTurni = htmlService.getList(data);
 
+        String listData = htmlService.selectData(data);
+        List<Integer> listDays = htmlService.selectDays(data);
 
-
-        List<Integer> listIDgiorni = htmlService.queryIdDays();
-
-        model.addAttribute("listDays", listIDgiorni);
+        model.addAttribute("Days" , listDays);
+        model.addAttribute("listDays", listData);
         model.addAttribute("listTurni", listTurni);
         model.addAttribute("dependents" , list);
 
 
         return "editturno";
     }
-
 
     @GetMapping("/dipendenti")
     public String getDependents(Model model, @SpringQueryMap String keyword) {
@@ -131,6 +141,10 @@ public class ControllerHTML {
         model.addAttribute("cognome", response.getCognome());
         model.addAttribute("salary", response.getSalary());
 
+        if(StringUtils.isNumeric(response.getNome()) || StringUtils.isNumeric(response.getCognome()))
+            return "error";
+
+
         htmlService.postDependent(response);
 
         return "register";
@@ -159,5 +173,22 @@ public class ControllerHTML {
 
         return "editdipendenteturno";
     }
+
+    @GetMapping("/login")
+    public void Login(){
+
+    }
+
+    @GetMapping("/logout")
+    public String Logout(){
+
+        return "logout";
+    }
+
+    @GetMapping("/github")
+    public void gitHub(){
+
+    }
+
 
 }
